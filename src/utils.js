@@ -7,5 +7,5 @@ export const addCommas = amount => {
 }
 
 export const removeCommasOrCurrency = amount => {
-  return amount.replace(/\D/g,'')
+  return amount.replace(/[^\d.-]/g, '')
 }
