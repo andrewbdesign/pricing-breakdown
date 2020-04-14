@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
-import { toDecimal, addCommas } from '../utils'
+import { toDecimal, addCommas, removeCommasOrCurrency } from '../utils'
 
 function PerMonth() {
 
   const [amount, setAmount] = useState(0)
 
+
   const onChange = e => {
-    setAmount(e.target.value)
+    const value = removeCommasOrCurrency(e.target.value)
+    const result = Number(value)
+    if (typeof result === 'number' && !isNaN(result)) {
+      setAmount(result)
+    } else {
+      setAmount(0)
+    }
   }
+
 
   const perYear = amount => {
     return toDecimal(amount * 12)
